@@ -1,0 +1,68 @@
+<html>
+   <head>
+      <title>MySQL Experiment</title>
+   </head>
+   <body>
+      <div id="jsonOutput"></div>
+   </body>
+   <script src="http://chancejs.com/chance.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+   <script type="text/javascript">
+      var arr = new Array(2000).fill().map(function() {
+        return {
+          url: chance["url"]({domain: 'https://api.github.com/repos'}),
+          repository_url: chance["url"]({domain: 'https://api.github.com/repos'}),
+          labels_url: chance["url"]({domain: 'https://api.github.com/repos'}),
+          comments_url: chance["url"]({domain: 'https://api.github.com/repos'}),
+          events_url: chance["url"]({domain: 'https://api.github.com/repos'}),
+          html_url: chance["url"]({domain: 'https://github.com/'}),
+          id: chance["fbid"](),
+          number: chance["integer"]({min: 0, max: 10000}),
+          title: chance["sentence"](),
+          user: {
+          login: chance["string"]({length: 8, pool: 'abcdefghijklmnopqrstuvw'}),
+          id: chance["integer"]({min: 1000, max: 100000000}),
+          avatar_url: chance["url"]({domain: 'https://avatars3.githubusercontent.com/u/'}),
+          gravatar_url: chance["string"]({length: 0}),
+          url: chance["url"]({domain: 'https://api.github.com/'}),
+          html_url: chance["url"]({domain: 'https://github.com/'}),
+          followers_url: chance["url"]({domain: 'https://api.github.com/users'}),
+          following_url: chance["url"]({domain: 'https://api.github.com/users'}),
+          gists_url: chance["url"]({domain: 'https://api.github.com/users'}),
+          starred_url: chance["url"]({domain: 'https://api.github.com/users'}),
+          subscriptions_url: chance["url"]({domain: 'https://api.github.com/users'}),
+          organizations_url: chance["url"]({domain: 'https://api.github.com/users'}),
+          repos_url: chance["url"]({domain: 'https://api.github.com/users'}),
+          events_url: chance["url"]({domain: 'https://api.github.com/users'}),
+          received_events_url: chance["url"]({domain: 'https://api.github.com/users'}),
+          type: "User",
+          site_admin: chance["bool"]({likelihood: 1}),
+          },
+          labels: [],
+          state: "open",
+          locked: chance["bool"](),
+          assignee: null,
+          assignees: [],
+          milestone: null,
+          comments: chance["integer"]({min: 0, max: 100}),
+          created_at: chance["date"](),
+          updated_at: chance["date"](),
+          closed_at: null,
+          author_association: "NONE",
+          pull_request: {
+          url: chance["url"]({domain: 'https://api.github.com/repos'}),
+          html_url: chance["url"]({domain: 'https://api.github.com/'}),
+          diff_url: chance["url"]({domain: 'https://api.github.com/'}),
+          patch_url: chance["url"]({domain: 'https://api.github.com/'}),
+          },
+          body: chance["sentence"](),
+        };
+      });
+      var startDate = new Date();
+      var json = JSON.stringify({ arr }, null, 2); // as you asked for json
+      document.getElementById("jsonOutput").innerHTML = json;
+      var endDate   = new Date();
+      var seconds = (endDate.getTime() - startDate.getTime()) / 1000;
+      console.log(seconds);
+   </script>
+</html>
