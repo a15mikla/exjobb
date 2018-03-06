@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>MySQL Experiment</title>
+  </head>
+  <body>
+    <form action="getBLOB.php" method="post">
+      <label>Enter data ID:</label>
+      <input id="inputData" name="dataID">
+      <br>
+      <input id="getData" type="submit" value="Enter">
+    </form>
+    <?php
+      // Connect to database
+      try {
+       $db_conn = new PDO('mysql:host=localhost;dbname=practice',
+       'root', '1234');
+      } catch (PDOException $e) {
+       echo "Could not connect to database";
+      }
+      
+      // Store value from form in a variable
+      $dataID = isset($_POST['dataID']) ? $_POST['dataID'] : false;
+      
+      // Query 
+      $query = "SELECT JSONdata FROM dataBLOB WHERE id = ?";
+      $sql = $db_conn->prepare($query);
+      
+      // Bind value from form
+      $sql->bindParam(1, $dataID, PDO::PARAM_INT);
+      $sql->execute();
+      $startTime = microtime(true);
+      
+      // Display results
+      while($row = $sql->fetch()) {
+       $endTime = microtime(true);
+       $json = $row['JSONdata'];
+       $elapsed = $endTime - $startTime;
+       echo "Execution time : $elapsed seconds<br>";
+       echo $json;
+      }
+      
+      ?>
+  </body>
+
+  <script type="text/javascript">
+    // Focus on input
+      var input = document.getElementById('inputData');
+      input.focus();
+      input.select();
+  </script>
+</html>
