@@ -12,7 +12,7 @@
     <?php
       // Connect to database
       try {
-       $db_conn = new PDO('mysql:host=localhost;dbname=practice',
+       $db_conn = new PDO('mysql:host=localhost;dbname=experiment',
        'root', '1234');
       } catch (PDOException $e) {
        echo "Could not connect to database";

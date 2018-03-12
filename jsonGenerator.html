@@ -1,14 +1,14 @@
 <html>
    <head>
-      <title>MySQL Experiment</title>
+      <title>JSON-generator</title>
    </head>
    <body>
-      <div id="jsonOutput"></div>
+      <form id="jsonOutput" method="post"></form>
    </body>
    <script src="http://chancejs.com/chance.min.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
    <script type="text/javascript">
-      var arr = new Array(2000).fill().map(function() {
+      var arr = new Array(1).fill().map(function() {
         return {
           url: chance["url"]({domain: 'https://api.github.com/repos'}),
           repository_url: chance["url"]({domain: 'https://api.github.com/repos'}),
@@ -58,11 +58,19 @@
           body: chance["sentence"](),
         };
       });
-      var startDate = new Date();
-      var json = JSON.stringify({ arr }, null, 2); // as you asked for json
+      var json = JSON.stringify(arr, null, 2); // as you asked for json
       document.getElementById("jsonOutput").innerHTML = json;
-      var endDate   = new Date();
-      var seconds = (endDate.getTime() - startDate.getTime()) / 1000;
-      console.log(seconds);
+      //console.log(json);
+$(document).ready(function() {
+         $.ajax({
+          type: "POST",
+          url: 'storeData.php',
+          data: ({json:json}),
+          success: function(data) {
+            alert(data);
+          }
+        });
+        console.log("hej");
+    });
    </script>
 </html>
