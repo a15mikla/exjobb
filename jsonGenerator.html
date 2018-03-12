@@ -3,7 +3,8 @@
       <title>JSON-generator</title>
    </head>
    <body>
-      <form id="jsonOutput" method="post"></form>
+    <button id="storeJSON">Store data</button>
+      <div id="jsonOutput"></form>
    </body>
    <script src="http://chancejs.com/chance.min.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -61,16 +62,15 @@
       var json = JSON.stringify(arr, null, 2); // as you asked for json
       document.getElementById("jsonOutput").innerHTML = json;
       //console.log(json);
-      $(document).ready(function() {
+      $( "#storeJSON" ).click(function() {
          $.ajax({
           type: "POST",
           url: 'storeData.php',
           data: ({json:json}),
           success: function(data) {
-            alert(data);
+            document.getElementById("jsonOutput").innerHTML = data;
           }
         });
-        console.log("hej");
     });
    </script>
 </html>
