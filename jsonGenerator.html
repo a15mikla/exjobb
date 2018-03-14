@@ -3,12 +3,14 @@
       <title>JSON-generator</title>
    </head>
    <body>
-    <button id="storeJSON">Store data</button>
+      <button id="storeJSON">Store data</button>
+      <h2>Generated JSON:</h2>
       <div id="jsonOutput"></form>
    </body>
    <script src="http://chancejs.com/chance.min.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
    <script type="text/javascript">
+      // Array(x): x = number of objects
       var arr = new Array(1).fill().map(function() {
         return {
           url: chance["url"]({domain: 'https://api.github.com/repos'}),
@@ -17,12 +19,12 @@
           comments_url: chance["url"]({domain: 'https://api.github.com/repos'}),
           events_url: chance["url"]({domain: 'https://api.github.com/repos'}),
           html_url: chance["url"]({domain: 'https://github.com/'}),
-          id: chance["fbid"](),
+          id: chance["integer"]({min: 0, max: 10000}),
           number: chance["integer"]({min: 0, max: 10000}),
           title: chance["sentence"](),
           user: {
           login: chance["string"]({length: 8, pool: 'abcdefghijklmnopqrstuvw'}),
-          id: chance["integer"]({min: 1000, max: 100000000}),
+          id: chance["integer"]({min: 1000, max: 10000}),
           avatar_url: chance["url"]({domain: 'https://avatars3.githubusercontent.com/u/'}),
           gravatar_url: chance["string"]({length: 0}),
           url: chance["url"]({domain: 'https://api.github.com/'}),
@@ -56,7 +58,7 @@
           diff_url: chance["url"]({domain: 'https://api.github.com/'}),
           patch_url: chance["url"]({domain: 'https://api.github.com/'}),
           },
-          body: chance["sentence"](),
+          body: chance["paragraph"](),
         };
       });
       var json = JSON.stringify(arr, null, 2); // as you asked for json
@@ -71,6 +73,7 @@
             document.getElementById("jsonOutput").innerHTML = data;
           }
         });
+        location.reload();
     });
    </script>
 </html>

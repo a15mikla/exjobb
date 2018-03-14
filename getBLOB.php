@@ -37,8 +37,11 @@
        $elapsed = $endTime - $startTime;
        echo "Execution time : $elapsed seconds<br>";
        echo $json;
+       //file_put_contents('time.xls', "$dataID:$elapsed\n", FILE_APPEND);
       }
-      
+      echo "<script>";
+      echo "document.getElementById('inputData').setAttribute('value',".$dataID.");";
+      echo "</script>";
       ?>
   </body>
 
