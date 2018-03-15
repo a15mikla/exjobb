@@ -1,1 +1,1 @@
-Collection of files for master thesis.
+Examensarbete, samling av filer.
