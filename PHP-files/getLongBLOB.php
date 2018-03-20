@@ -22,24 +22,22 @@
       $dataID = isset($_POST['dataID']) ? $_POST['dataID'] : false;
       
       // Query 
-      $query = "SELECT JSONdata FROM dataBLOB WHERE id = ?";
+      $query = "SELECT JSONdata FROM dataLongBLOB WHERE id = ?";
       $sql = $db_conn->prepare($query);
       
       // Bind value from form
       $sql->bindParam(1, $dataID, PDO::PARAM_INT);
-
-      // Execute query and benchmark
-      $startTime = microtime(true);
       $sql->execute();
-      $endTime = microtime(true);
-      $elapsed = $endTime - $startTime;
-      file_put_contents('timeBLOB.xls', "$dataID:$elapsed\n", FILE_APPEND);
+      $startTime = microtime(true);
       
       // Display results
       while($row = $sql->fetch()) {
+       $endTime = microtime(true);
        $json = $row['JSONdata'];
+       $elapsed = $endTime - $startTime;
        echo "Execution time : $elapsed seconds<br>";
        echo $json;
+       file_put_contents('timeLongBLOB.xls', "$dataID:$elapsed\n", FILE_APPEND);
       }
       echo "<script>";
       echo "document.getElementById('inputData').setAttribute('value',".$dataID.");";

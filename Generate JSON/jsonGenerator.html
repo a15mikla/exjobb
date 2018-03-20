@@ -41,11 +41,13 @@
           type: "User",
           site_admin: chance["bool"]({likelihood: 1}),
           },
-          labels: [],
+          labels: [
+          ],
           state: "open",
           locked: chance["bool"](),
           assignee: null,
-          assignees: [],
+          assignees: [
+          ],
           milestone: null,
           comments: chance["integer"]({min: 0, max: 100}),
           created_at: chance["date"](),
@@ -63,7 +65,7 @@
       });
       var json = JSON.stringify(arr, null, 2); // as you asked for json
       document.getElementById("jsonOutput").innerHTML = json;
-      //console.log(json);
+      console.log(json);
       $( "#storeJSON" ).click(function() {
          $.ajax({
           type: "POST",
