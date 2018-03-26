@@ -32,13 +32,13 @@
       $startTime = microtime(true);
       $sql->execute();
       $endTime = microtime(true);
-      $elapsed = $endTime - $startTime;
-      file_put_contents('timeBLOB.xls', "$dataID:$elapsed\n", FILE_APPEND);
+      $elapsedTime = $endTime - $startTime;
+      file_put_contents('timeBLOB.xls', "$dataID:$elapsedTime\n", FILE_APPEND);
       
       // Display results
       while($row = $sql->fetch()) {
        $json = $row['JSONdata'];
-       echo "Execution time : $elapsed seconds<br>";
+       echo "Execution time : $elapsedTime seconds<br>";
        echo $json;
       }
       echo "<script>";
