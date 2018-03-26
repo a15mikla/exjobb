@@ -27,17 +27,19 @@
       
       // Bind value from form
       $sql->bindParam(1, $dataID, PDO::PARAM_INT);
-      $sql->execute();
+
+      // Execute query and benchmark
       $startTime = microtime(true);
+      $sql->execute();
+      $endTime = microtime(true);
+      $elapsedTime = $endTime - $startTime;
+      file_put_contents('timeTinyBLOB.xls', "$dataID:$elapsedTime\n", FILE_APPEND);
       
       // Display results
       while($row = $sql->fetch()) {
-       $endTime = microtime(true);
        $json = $row['JSONdata'];
-       $elapsed = $endTime - $startTime;
-       echo "Execution time : $elapsed seconds<br>";
+       echo "Execution time : $elapsedTime seconds<br>";
        echo $json;
-       file_put_contents('timeTinyBLOB.xls', "$dataID:$elapsed\n", FILE_APPEND);
       }
       echo "<script>";
       echo "document.getElementById('inputData').setAttribute('value',".$dataID.");";
