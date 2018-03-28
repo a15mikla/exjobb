@@ -3,7 +3,7 @@
     <title>MySQL Experiment</title>
   </head>
   <body>
-    <form action="getBLOB.php" method="post">
+    <form action="getMediumBLOB.php" method="post">
       <label>Enter data ID:</label>
       <input id="inputData" name="dataID">
       <br>
@@ -22,7 +22,7 @@
       $dataID = isset($_POST['dataID']) ? $_POST['dataID'] : false;
       
       // Query 
-      $query = "SELECT JSONdata FROM dataBLOB WHERE id = ?";
+      $query = "SELECT JSONdata FROM dataMediumBLOB WHERE id = ?";
       $sql = $db_conn->prepare($query);
       
       // Bind value from form
@@ -33,7 +33,7 @@
       $sql->execute();
       $endTime = microtime(true);
       $elapsedTime = $endTime - $startTime;
-      file_put_contents('timeBLOB.xls', "$dataID:$elapsedTime\n", FILE_APPEND);
+      file_put_contents('timeMediumBLOB.xls', "$dataID:$elapsedTime\n", FILE_APPEND);
       
       // Display results
       while($row = $sql->fetch()) {

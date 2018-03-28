@@ -3,7 +3,7 @@
     <title>MySQL Experiment</title>
   </head>
   <body>
-    <form action="getBLOB.php" method="post">
+    <form action="getJSON.php" method="post">
       <label>Enter data ID:</label>
       <input id="inputData" name="dataID">
       <br>

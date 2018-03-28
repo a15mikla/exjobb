@@ -65,11 +65,11 @@
       });
       var json = JSON.stringify(arr, null, 2); // as you asked for json
       document.getElementById("jsonOutput").innerHTML = json;
-      console.log(json);
+      // console.log(json);
       $( "#storeJSON" ).click(function() {
          $.ajax({
           type: "POST",
-          url: 'storeData.php',
+          url: 'storeTinyBLOB.php',
           data: ({json:json}),
           success: function(data) {
             document.getElementById("jsonOutput").innerHTML = data;
