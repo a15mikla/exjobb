@@ -22,7 +22,7 @@
       $dataID = isset($_POST['dataID']) ? $_POST['dataID'] : false;
       
       // Query 
-      $query = "SELECT JSONdata FROM dataJSON WHERE id = ?";
+      $query = "SELECT JSONdata FROM dataBLOB WHERE id = ?";
       $sql = $db_conn->prepare($query);
       
       // Bind value from form
