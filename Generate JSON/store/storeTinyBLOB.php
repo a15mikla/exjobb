@@ -1,6 +1,6 @@
 <?php
 try {
-      $db_conn = new PDO('mysql:host=localhost;dbname=experiment', 'root', '1234');
+      $db_conn = new PDO('mysql:host=localhost;dbname=experiment', 'root', '12345');
       $db_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $json = $_POST['json'];
       $query = "INSERT INTO dataTinyBLOB (JSONdata) VALUES ('$json')";

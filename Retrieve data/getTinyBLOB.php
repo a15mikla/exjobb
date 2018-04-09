@@ -13,7 +13,7 @@
       // Connect to database
       try {
        $db_conn = new PDO('mysql:host=localhost;dbname=experiment',
-       'root', '1234');
+       'root', '12345');
       } catch (PDOException $e) {
        echo "Could not connect to database";
       }
@@ -35,12 +35,12 @@
       $elapsedTime = $endTime - $startTime;
       file_put_contents('timeTinyBLOB.xls', "$dataID:$elapsedTime\n", FILE_APPEND);
       
-      // Display results
+      /* Display results, not needed while executing the experiment
       while($row = $sql->fetch()) {
        $json = $row['JSONdata'];
        echo "Execution time : $elapsedTime seconds<br>";
        echo $json;
-      }
+      }*/
       echo "<script>";
       echo "document.getElementById('inputData').setAttribute('value',".$dataID.");";
       echo "</script>";

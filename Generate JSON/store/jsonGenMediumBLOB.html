@@ -11,7 +11,7 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
    <script type="text/javascript">
       // Array(x): x = number of objects
-      var arr = new Array(1).fill().map(function() {
+      var arr = new Array(4370).fill().map(function() {
         return {
           url: chance["url"]({domain: 'api.github.com/repos/user/repo/issues'}),
           repository_url: chance["url"]({domain: 'api.github.com/repos/user/repo'}),
@@ -63,16 +63,18 @@
           body: chance["paragraph"](),
         };
       });
-      var json = JSON.stringify(arr, null, 2); // as you asked for json
+      var json = JSON.stringify(arr, null, 2); // Convert to JSON
+      /* Output not needed while executing the experiment
       document.getElementById("jsonOutput").innerHTML = json;
-      // console.log(json);
+      console.log(json);*/
+      
       $( "#storeJSON" ).click(function() {
          $.ajax({
           type: "POST",
           url: 'storeMediumBLOB.php',
           data: ({json:json}),
           success: function(data) {
-            document.getElementById("jsonOutput").innerHTML = data;
+          json = data;
           }
         });
         location.reload();
