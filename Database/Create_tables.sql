@@ -1,6 +1,7 @@
 DROP database if exists experiment;
 CREATE database experiment;
 USE experiment;
+SET GLOBAL max_allowed_packet=1073741824;
 
 CREATE TABLE dataTinyBLOB (
 	id INT auto_increment,
