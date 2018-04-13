@@ -1,17 +1,18 @@
 // ==UserScript==
-// @name         Store JSON-data
+// @name         Store JSON-data TinyBLOB
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  Store JSON-data in database
-// @author       You
-// @match        http://localhost/jsongenerator.html
+// @author       a15mikla
+// @match        http://localhost/store/jsonGenTinyBLOB.html
 // @grant        all
 // @require      http://code.jquery.com/jquery-2.1.0.min.js
 // ==/UserScript==
 
 $(document).ready(function(){
      if (localStorage.getItem("clicks")) {
-         if (localStorage.getItem("clicks") < 10) {
+         // localStorage.getItem("clicks") < x: x = number of times for storing data
+         if (localStorage.getItem("clicks") < 20) {
          localStorage.setItem("clicks",Number(localStorage.getItem("clicks"))+1);
          $("#storeJSON").click();
          }

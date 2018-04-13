@@ -13,7 +13,7 @@
       // Connect to database
       try {
        $db_conn = new PDO('mysql:host=localhost;dbname=experiment',
-       'root', '12345');
+       'root', '1234');
       } catch (PDOException $e) {
        echo "Could not connect to database";
       }
@@ -21,9 +21,14 @@
       // Store value from form in a variable
       $dataID = isset($_POST['dataID']) ? $_POST['dataID'] : false;
       
-      // Query 
-      $query = "SELECT JSONdata FROM dataBLOB WHERE id = ?";
-      $sql = $db_conn->prepare($query);
+      // Uncomment the code according to the datatype you want to get
+      
+      // $query = "SELECT JSONdata FROM dataJSON WHERE id = ?";
+      // $query = "SELECT JSONdata FROM dataTinyBLOB WHERE id = ?";
+      // $query = "SELECT JSONdata FROM dataBLOB WHERE id = ?";
+      // $query = "SELECT JSONdata FROM dataMediumBLOB WHERE id = ?";
+      // $query = "SELECT JSONdata FROM dataLongBLOB WHERE id = ?";
+      // $sql = $db_conn->prepare($query);
       
       // Bind value from form
       $sql->bindParam(1, $dataID, PDO::PARAM_INT);
@@ -33,14 +38,14 @@
       $sql->execute();
       $endTime = microtime(true);
       $elapsedTime = $endTime - $startTime;
-      file_put_contents('timeBLOB.xls', "$dataID:$elapsedTime\n", FILE_APPEND);
+      file_put_contents('timeResult.xls', "$dataID:$elapsedTime\n", FILE_APPEND);
       
-      /* Display results, not needed while executing the experiment
+      // Display results
       while($row = $sql->fetch()) {
        $json = $row['JSONdata'];
        echo "Execution time : $elapsedTime seconds<br>";
        echo $json;
-      }*/
+      }
       echo "<script>";
       echo "document.getElementById('inputData').setAttribute('value',".$dataID.");";
       echo "</script>";

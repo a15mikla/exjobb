@@ -3,8 +3,8 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  Retrieve data from database
-// @author       You
-// @match        http://localhost/getBLOB.php
+// @author       a15mikla
+// @match        http://localhost/get/getData.php
 // @grant        all
 // @require      http://code.jquery.com/jquery-2.1.0.min.js
 // ==/UserScript==
@@ -12,7 +12,8 @@
 $(document).ready(function(){
     var valueOfSearch = document.getElementById("inputData").value;
     var valueToAdd = parseInt(valueOfSearch);
-    if (valueToAdd < 10){
+    // valueToAdd < x: x = Number of times to retrieve data
+    if (valueToAdd < 20){
         document.getElementById("inputData").setAttribute('value',(valueToAdd+1));
         document.getElementById("inputData").innerHTML = (valueToAdd+1);
         $("#getData").click();

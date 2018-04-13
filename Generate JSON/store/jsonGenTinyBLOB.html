@@ -26,7 +26,7 @@
       $( "#storeJSON" ).click(function() {
          $.ajax({
           type: "POST",
-          url: 'storeTinyBLOB.php',
+          url: 'storeData.php',
           data: ({json:json}),
           success: function(data) {
             json = data;

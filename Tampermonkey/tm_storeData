@@ -1,0 +1,22 @@
+// ==UserScript==
+// @name         Store JSON-data
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  Store JSON-data in database
+// @author       a15mikla
+// @match        http://localhost/store/jsonGen.html
+// @grant        all
+// @require      http://code.jquery.com/jquery-2.1.0.min.js
+// ==/UserScript==
+
+$(document).ready(function(){
+     if (localStorage.getItem("clicks")) {
+         // localStorage.getItem("clicks") < x: x = number of times for storing data
+         if (localStorage.getItem("clicks") < 20) {
+         localStorage.setItem("clicks",Number(localStorage.getItem("clicks"))+1);
+         $("#storeJSON").click();
+         }
+     }else {
+         localStorage.setItem("clicks", 0);
+     }
+});
