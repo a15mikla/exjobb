@@ -28,7 +28,7 @@
       // $query = "SELECT JSONdata FROM dataBLOB WHERE id = ?";
       // $query = "SELECT JSONdata FROM dataMediumBLOB WHERE id = ?";
       // $query = "SELECT JSONdata FROM dataLongBLOB WHERE id = ?";
-      // $sql = $db_conn->prepare($query);
+      $sql = $db_conn->prepare($query);
       
       // Bind value from form
       $sql->bindParam(1, $dataID, PDO::PARAM_INT);
