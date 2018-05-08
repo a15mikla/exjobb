@@ -40,12 +40,12 @@
       $elapsedTime = $endTime - $startTime;
       file_put_contents('timeResult.xls', "$dataID:$elapsedTime\n", FILE_APPEND);
       
-      // Display results
+      /* Display results, not needed while executing the experiment
       while($row = $sql->fetch()) {
        $json = $row['JSONdata'];
        echo "Execution time : $elapsedTime seconds<br>";
        echo $json;
-      }
+      }*/
       echo "<script>";
       echo "document.getElementById('inputData').setAttribute('value',".$dataID.");";
       echo "</script>";
